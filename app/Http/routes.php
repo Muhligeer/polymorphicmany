@@ -62,10 +62,20 @@ Route::get('/update', function(){
 
     $tag = Tag::find(1);
 
-//    $post->tags()->save($tag);
+    $post->tags()->save($tag);
 
 //    $post->tags()->attach($tag);
 
-    $post->tags()->sync([2]);
+//    $post->tags()->sync([2]);
+
+});
+
+Route::get('/delete', function(){
+
+    $post = Post::findOrFail(1);
+
+    foreach($post->tags as $tag)
+
+        $tag->whereId(1)->delete();
 
 });
